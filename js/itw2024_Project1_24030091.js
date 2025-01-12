@@ -1,19 +1,25 @@
-/*=============== EMAIL JS ===============*/
+/* EMAIL JS */
 const contactForm = document.getElementById('contact-form')
-      contactMessage = document.getElemenntById('contact-message')
-      
+    contactMessage = document.getElementById('send-massage')
+
 const sendEmail = (e) =>{
-    e.preventDefault()
+    e.preventDefault ()
 
-    // serviceID - templateID - #form - publickey
-    emailjs.sendForm
+    // serviceID - templateID - #form - publicKey
+    emailjs.sendForm('service_7n77pvf','template_62wqkc9','#contact-form','UUJzjWAqQbchFSEmT')
+
+    .then(() =>{
+        // kasi liat send massage
+        contactMessage.textContent = 'Massage send succesfully.'
+
+        setTimeout(() =>{
+            contactMessage.textContent = ''
+        },  5000)
+
+        contactForm.reset ()
+    }  () =>{
+        contactMessage.textContent = 'Massage not sent.'
+    })
+
 }
-
-
-/*=============== SHOW SCROLL UP ===============*/ 
-
-
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
+contactForm.addEventListener('submit', sendEmail)
